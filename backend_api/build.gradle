@@ -22,6 +22,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Jakarta Bean Validation (Hibernate Validator) via Spring Boot 3 starter
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 
 	// Security & JWT
@@ -32,6 +34,7 @@ dependencies {
 
 	// Database drivers and migrations
 	runtimeOnly 'com.h2database:h2'
+	// Keep versions managed by Spring Boot where possible; explicit version here is acceptable but not required
 	runtimeOnly 'org.postgresql:postgresql:42.7.4'
 	implementation 'org.flywaydb:flyway-core'
 

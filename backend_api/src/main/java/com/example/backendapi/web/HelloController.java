@@ -1,4 +1,4 @@
-package com.example.backendapi;
+package com.example.backendapi.web;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,11 +10,12 @@ import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
+ * PUBLIC_INTERFACE
  * Basic system endpoints to validate the application is running,
  * and to provide a simple redirect to Swagger UI.
  */
 @RestController
-@Tag(name = "Hello Controller", description = "Basic endpoints for backendapi")
+@Tag(name = "System", description = "Basic endpoints for backendapi")
 public class HelloController {
 
     // PUBLIC_INTERFACE

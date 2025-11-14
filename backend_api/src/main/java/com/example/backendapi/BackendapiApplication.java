@@ -11,10 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * - prod: PostgreSQL via environment variables
  */
 @SpringBootApplication
-public class backendapiApplication {
+public class BackendapiApplication {
 
     // PUBLIC_INTERFACE
     public static void main(String[] args) {
-        SpringApplication.run(backendapiApplication.class, args);
+        SpringApplication.run(BackendapiApplication.class, args);
     }
 }

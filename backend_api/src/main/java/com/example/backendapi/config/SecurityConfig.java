@@ -56,7 +56,12 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(request -> {
                 CorsConfiguration cfg = new CorsConfiguration();
-                cfg.setAllowedOrigins(List.of(frontendOrigin));
+                // Support explicit env origin plus common local dev if wildcard used
+                if ("*".equals(frontendOrigin)) {
+                    cfg.setAllowedOrigins(List.of("http://localhost:3000", "http://127.0.0.1:3000"));
+                } else {
+                    cfg.setAllowedOrigins(List.of(frontendOrigin));
+                }
                 cfg.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
                 cfg.setAllowedHeaders(List.of("*"));
                 cfg.setAllowCredentials(true);

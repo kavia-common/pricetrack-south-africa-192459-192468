@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.8'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'checkstyle'
 }
 
 group = 'com.example'
@@ -22,10 +23,38 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Database drivers and migrations
 	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql:42.7.4'
+	implementation 'org.flywaydb:flyway-core'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+checkstyle {
+    toolVersion = '10.17.0'
+    configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
+    // Do not fail build initially; convert to true once codebase adopts rules
+    ignoreFailures = true
+    maxWarnings = 0
+    maxErrors = 0
+}
+
+tasks.named('checkstyleMain').configure {
+    reports {
+        xml.required = false
+        html.required = true
+    }
+}
+tasks.named('checkstyleTest').configure {
+    reports {
+        xml.required = false
+        html.required = true
+    }
 }
 
 tasks.named('test') {
